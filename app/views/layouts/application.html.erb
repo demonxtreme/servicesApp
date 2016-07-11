@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ServiceApp</title>
+     <%= render :partial => 'shared/includes' %>
+  </head>
+
+  <body>
+<div class="container-fluid">
+  <ol class="breadcrumb">
+    <li>	<%= link_to "Home", root_path %></li>
+    <li><%= link_to "Customers", customers_path %></li>
+    <li><%= link_to "Profile", profiles_path  %></li>
+    <li><%= link_to "find services", services_location_path %></li>
+  </ol>
+
+    <%= yield %>
+</div>
+  </body>
+</html>
