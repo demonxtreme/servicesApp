@@ -1,6 +1,7 @@
 <h1>ServicesLocation</h1>
 <div class="row">
-  <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;"></canvas>
+  <p><%=@location %></p>
+  <p><%= @searchInput %></p>
 <div id="map" class="pull-right"></div>
 </div>
 <script>
@@ -8,16 +9,26 @@
 
 var neighborhoods = new Array();
 <% @services.each do | service| %>
-neighborhoods.push({lat: <%= service.latitude %>, lng: <%= service.longitude %>});
+  <% if( service.service_type == params[:searchInput]) %>
+  neighborhoods.push( {name: '<%=service.name %>', lat: <%= service.latitude %>, lng: <%= service.longitude %>});
+  <% end %>
 <% end %>
 
-var markers = [];
-var map;
+var marker, markers = [], map;
 
 function initMap() {
+  var geocoder = new google.maps.Geocoder();
+  var location = " <%= @location %>";
+
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    center: {lat: 53.347420, lng: -6.253910}
+    zoom: 12
+  });
+  geocoder.geocode( { 'address': location }, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      map.setCenter(results[0].geometry.location);
+    } else {//handle a bad search with something nice for the customer
+      map.setCenter(new google.maps.LatLng(53.3498053, -6.260309699999993));
+    }
   });
   drop();
 }
@@ -29,14 +40,25 @@ function drop() {
   }
 }
 
-function addMarkerWithTimeout(position, timeout) {
+function addMarkerWithTimeout(service, timeout) {
+  var infowindow = new google.maps.InfoWindow();
+  marker = new google.maps.Marker({
+    name: service.name,
+    position: {lat: service.lat, lng: service.lng},
+    map: map,
+    animation: google.maps.Animation.DROP
+  });
+
   window.setTimeout(function() {
-    markers.push(new google.maps.Marker({
-      position: position,
-      map: map,
-      animation: google.maps.Animation.DROP
-    }));
+    markers.push(marker);
   }, timeout);
+
+  google.maps.event.addListener(marker, 'click', (function(marker) {
+    return function() {
+      infowindow.setContent(marker.name);
+      infowindow.open(map, marker);
+    }
+  })(marker));
 }
 
 function clearMarkers() {

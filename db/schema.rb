@@ -25,14 +25,6 @@ ActiveRecord::Schema.define(version: 20160707235253) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "profiles", force: :cascade do |t|
-    t.integer  "services_id"
-    t.string   "img_url"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["services_id"], name: "index_profiles_on_services_id"
-  end
-
   create_table "reviews", force: :cascade do |t|
     t.integer  "service_id"
     t.string   "title",       null: false
@@ -46,7 +38,7 @@ ActiveRecord::Schema.define(version: 20160707235253) do
   create_table "services", force: :cascade do |t|
     t.integer  "customer_id"
     t.string   "name"
-    t.integer  "service_type"
+    t.string   "service_type"
     t.string   "description"
     t.decimal  "latitude"
     t.decimal  "longitude"
