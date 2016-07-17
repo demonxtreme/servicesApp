@@ -1,76 +1,104 @@
-<h1>ServicesLocation</h1>
+<h1>Find services</h1>
 <div class="row">
-  <p><%=@location %></p>
-  <p><%= @searchInput %></p>
-<div id="map" class="pull-right"></div>
-</div>
-<script>
+  <%= form_tag(services_location_path, method: "get") do %>
 
+      <div class="input-group">
+        <%= label_tag(:locationTextField, "Location", class: 'col-xs-1 col-md-1') %>
+        <%= text_field_tag :locationTextField, "", class: 'form-control col-md-2', placeholder: 'hehe' %>
+      </div>
+      <div class="input-group col-md-2">
+        <%= text_field_tag :searchInput, "", class: 'form-control', placeholder: 'Search for...' %>
+        <span class="input-group-btn">
+        <%= submit_tag("Search", class: 'form-control') %>
+      </span>
+      </div>
 
-var neighborhoods = new Array();
-<% @services.each do | service| %>
-  <% if( service.service_type == params[:searchInput]) %>
-  neighborhoods.push( {name: '<%=service.name %>', lat: <%= service.latitude %>, lng: <%= service.longitude %>});
+      </div>
   <% end %>
-<% end %>
+  </div>
+  <div class="row">
+    <div class="pull-left">
+      <span><%= @location %></span>
+      <span><%= @searchInput %></span>
+      <% @services.each do |service| %>
+          <% if (service.service_type == params[:searchInput]) %>
+              <table>
+                <tr>
+                  <td><%= service.name %></td>
+                </tr>
+              </table>
+          <% end %>
+      <% end %>
+    </div>
+    <div id="map" class="pull-right"></div>
+  </div>
+  <script>
 
-var marker, markers = [], map;
 
-function initMap() {
-  var geocoder = new google.maps.Geocoder();
-  var location = " <%= @location %>";
+    var services = new Array();
+    <% @services.each do | service| %>
+    <% if( service.service_type == params[:searchInput]) %>
+    services.push({name: '<%=service.name %>', lat: <%= service.latitude %>, lng: <%= service.longitude %>});
+    <% end %>
+    <% end %>
 
-  map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12
-  });
-  geocoder.geocode( { 'address': location }, function(results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-      map.setCenter(results[0].geometry.location);
-    } else {//handle a bad search with something nice for the customer
-      map.setCenter(new google.maps.LatLng(53.3498053, -6.260309699999993));
+    var marker, markers = [], map;
+
+    function initMap() {
+      var geocoder = new google.maps.Geocoder();
+      var location = " <%= @location %>";
+
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12
+      });
+      geocoder.geocode({'address': location}, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          map.setCenter(results[0].geometry.location);
+        } else {//handle a bad search with something nice for the customer
+          map.setCenter(new google.maps.LatLng(53.3498053, -6.260309699999993));
+        }
+      });
+      drop();
     }
-  });
-  drop();
-}
 
-function drop() {
-  clearMarkers();
-  for (var i = 0; i < neighborhoods.length; i++) {
-    addMarkerWithTimeout(neighborhoods[i], i * 200);
-  }
-}
-
-function addMarkerWithTimeout(service, timeout) {
-  var infowindow = new google.maps.InfoWindow();
-  marker = new google.maps.Marker({
-    name: service.name,
-    position: {lat: service.lat, lng: service.lng},
-    map: map,
-    animation: google.maps.Animation.DROP
-  });
-
-  window.setTimeout(function() {
-    markers.push(marker);
-  }, timeout);
-
-  google.maps.event.addListener(marker, 'click', (function(marker) {
-    return function() {
-      infowindow.setContent(marker.name);
-      infowindow.open(map, marker);
+    function drop() {
+      clearMarkers();
+      for (var i = 0; i < services.length; i++) {
+        addMarkerWithTimeout(services[i], i * 200);
+      }
     }
-  })(marker));
-}
 
-function clearMarkers() {
-  for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(null);
-  }
-  markers = [];
-}
+    function addMarkerWithTimeout(service, timeout) {
+      var infowindow = new google.maps.InfoWindow();
+      marker = new google.maps.Marker({
+        name: service.name,
+        position: {lat: service.lat, lng: service.lng},
+        map: map,
+        animation: google.maps.Animation.DROP
+      });
+
+      window.setTimeout(function () {
+        markers.push(marker);
+      }, timeout);
+
+      google.maps.event.addListener(marker, 'click', (function (marker) {
+        return function () {
+          infowindow.setContent(marker.name);
+          infowindow.open(map, marker);
+        }
+      })(marker));
+    }
+
+    function clearMarkers() {
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+      }
+      markers = [];
+    }
 
 
-</script>
+  </script>
 
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBnG1nz-0s--EBdSX-o9q3ntkxkQDCKVc&callback=initMap">
-</script>
+  <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBnG1nz-0s--EBdSX-o9q3ntkxkQDCKVc&callback=initMap">
+  </script>

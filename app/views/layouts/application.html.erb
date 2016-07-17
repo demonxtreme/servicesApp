@@ -1,19 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>ServiceApp</title>
-     <%= render :partial => 'shared/includes' %>
-  </head>
+<head>
+  <title>ServiceApp</title>
+  <%= render :partial => 'shared/includes' %>
+</head>
 
-  <body>
-<div class="container-fluid">
-  <ol class="breadcrumb">
-    <li>	<%= link_to "Home", root_path %></li>
-    <li><%= link_to "Customers", customers_path %></li>
-    <li><%= link_to "find services", services_location_path %></li>
-  </ol>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="<%= root_path %>">
+      <img alt="Brand" src="">
+    </a>
+    <ul class="nav navbar-nav">
+      <li><%= link_to "Customers", customers_path %></li>
+      <li><%= link_to "Find Services", services_location_path %></li>
+      <li><%= link_to "Sign in with Facebook", omniauth_authorize_path(:user, :facebook) %></li>
+      </ul>
+    <% if user_signed_in? %>
+        <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link"><%= current_user.email %></a>
+          (<%= link_to 'Sign out', destroy_user_session_path,
+                       :method => :delete %>)
+        </p>
 
-    <%= yield %>
+    <% else %>
+        <p class="navbar-text navbar-right"><%= link_to 'Register', new_user_registration_path %> or
+        <%= link_to 'Sign in', new_user_session_path %> </p>
+    <% end %>
+  </div>
+</nav>
+<div class="container">
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+
+  <%= yield %>
 </div>
-  </body>
+</body>
 </html>
