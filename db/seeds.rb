@@ -6,47 +6,65 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
+#Faker:: is a gem that allows to generate random seed data.
+#I generate seed data in order to test the application
 services_list = [
-    [ "Panno and Sons Plumbers",  "Plumber", "Lorem ipsum", 53.347420, -6.253910, ],
-    [ "John the Plumber",  "Plumber", "Lorem ipsum", 53.357420, -6.254910, ],
-    [ "Plumbing Unlimited",  "Plumber", "Lorem ipsum", 54.347420, -6.353910, ],
-    [ "Miguel el Plumber Bombastico",  "Plumber", "Lorem ipsum", 53.347420, -6.253910, ],
-    [ "Electricians Direct",  "Electrician", "Lorem ipsum ", 53.348297, -6.256178, ],
-    [ "Handy Manny Electronico", "Electrician", "Lorem ipsum ", 53.348297, -6.255178, ],
-    [ "Maths Teacher", "Teacher", "Lorem ipsum", 53.348195, -6.259152, ],
-    [ "English Teacher", "Teacher", "Lorem ipsum", 53.342195, -6.258152, ],
-    [ "Spanish Teacher", "Teacher", "Lorem ipsum", 54.346195, -6.257152, ],
-    [ "Alan Pannos Guide to Biology",  "Teacher", "Lorem ipsum", 53.348195, -6.256152, ],
-    [ "DHL", "Delivery", "Lorem ipsum", 53.349988, -6.253888, ],
-    [ "An Post", "Delivery",  "Lorem ipsum", 53.352988, -6.267888, ],
-    [ "Postage Direct", "Delivery", "Lorem ipsum", 53.420988, -6.280888, ],
-    [ "Kids Parties", "Planner", "Lorem ipsum",  53.367660, -6.286972, ],
-    [ "Marielvia the Wedding Planner", "Planner", "Lorem ipsum",  53.361660, -6.190972, ],
-    [ "Dora the Party Explorer", "Planner", "Lorem ipsum",  53.350660, -6.321972, ],
-    [ "Phils Engineering Co.","Engineer", "Lorem ipsum", 53.348867, -6.248095, ],
-    [ "Yevhens Big Engineering Co.","Engineer", "Lorem ipsum", 53.348867, -6.368095, ],
-    [ "Ramas Engineers", "Engineer", "Lorem ipsum", 53.348867, -6.358095, ],
-    [ "Panno Engineering Limited", "Engineer", "Lorem ipsum", 53.438867, -6.248095, ],
-    [ "Industrial Painters",  "Painter", "Lorem ipsum", 53.342786, -6.249049, ],
-    [ "Private Painting Co.",  "Painter", "Lorem ipsum", 53.335786, -6.249049, ],
-    [ "Alans Painting Extravaganza",  "Painter", "Lorem ipsum", 53.329786, -6.249049, ],
-    [ "We Paint Everything",  "Painter", "Lorem ipsum", 53.349786, -6.249049, ],
-    [ "Large Scale Builders", "Builder", "Lorem ipsum", 53.348287, -6.252654, ],
-    [ "Small Building Co.", "Builder", "Lorem ipsum", 53.438287, -6.525654, ],
-    [ "Pannos Building Group", "Builder", "Lorem ipsum", 54.843287, -6.363654, ],
-    [ "Handy Manny", "Builder", "Lorem ipsum", 53.358287, -6.525654, ]
+    [1, "Panno and Sons Plumbers",  "Plumber", Faker::Lorem.sentence(3) , 53.347420, -6.253910,      Faker::Avatar.image,  Faker::Commerce.price  , "Monday to friday 9 to 18 hs", Faker::Internet.email ],
+    [2, "John the Plumber",  "Plumber",            Faker::Lorem.sentence(3) , 53.357420, -6.254910,     Faker::Avatar.image,  Faker::Commerce.price, "Monday to friday 9 to 18 hs",Faker::Internet.email ],
+    [3, "Plumbing Unlimited",  "Plumber",          Faker::Lorem.sentence(3) , 54.347420, -6.353910,   Faker::Avatar.image,  Faker::Commerce.price, "Monday to friday 9 to 18 hs" , Faker::Internet.email ],
+    [1, "Miguel el Plumber Bombastico", "Plumber", Faker::Lorem.sentence(3) , 53.347420, -6.253910, Faker::Avatar.image,  Faker::Commerce.price, "Monday to friday 9 to 18 hs",    Faker::Internet.email ],
+    [2, "Electricians Direct",  "Electrician",     Faker::Lorem.sentence(3) , 53.348297, -6.256178,     Faker::Avatar.image,  Faker::Commerce.price ,"Monday to friday 9 to 18 hs",Faker::Internet.email ],
+    [3, "Handy Manny Electronico", "Electrician",  Faker::Lorem.sentence(3) , 53.348297, -6.255178,  Faker::Avatar.image,  Faker::Commerce.price, "Monday to friday 9 to 18 hs",   Faker::Internet.email ],
+    [1,"Maths Teacher", "Teacher",                 Faker::Lorem.sentence(3) , 53.348195, -6.259152,  Faker::Avatar.image,  Faker::Commerce.price, "24 hours 24/7",                 Faker::Internet.email ],
+    [3,"English Teacher", "Teacher",               Faker::Lorem.sentence(3) , 53.342195, -6.258152,  Faker::Avatar.image,  Faker::Commerce.price, "Mondays to Saturdays all day",  Faker::Internet.email ],
+    [1,"Spanish Teacher", "Teacher",               Faker::Lorem.sentence(3) , 54.346195, -6.257152,  Faker::Avatar.image,  Faker::Commerce.price,  "Mondays to Saturdays all day", Faker::Internet.email ],
+    [2,"Alan Pannos Guide to Biology",  "Teacher", Faker::Lorem.sentence(3) , 53.348195, -6.256152,  Faker::Avatar.image,  Faker::Commerce.price, "Mondays to Saturdays all day" , Faker::Internet.email ],
+    [3,"DHL", "Delivery",                          Faker::Lorem.sentence(3) , 53.349988, -6.253888,    Faker::Avatar.image,  Faker::Commerce.price,"Mondays to Saturdays all day", Faker::Internet.email ],
+    [1,"An Post", "Delivery",                      Faker::Lorem.sentence(3) , 53.352988, -6.267888,         Faker::Avatar.image,  Faker::Commerce.price , "Mondays to Saturdays all day",Faker::Internet.email ],
+    [2,"Postage Direct", "Delivery",               Faker::Lorem.sentence(3) , 53.420988, -6.280888,   Faker::Avatar.image,  Faker::Commerce.price,"Monday to friday 9 to 18 hs", Faker::Internet.email       ],
+    [3,"Kids Parties", "Planner",                  Faker::Lorem.sentence(3) ,  53.367660, -6.286972,     Faker::Avatar.image,  Faker::Commerce.price ,"Monday to friday 9 to 18 hs", Faker::Internet.email],
+    [1,"Marielvia the Wedding Planner", "Planner", Faker::Lorem.sentence(3) ,  53.361660, -6.190972, Faker::Avatar.image,  Faker::Commerce.price ,"Monday to friday 9 to 18 hs" , Faker::Internet.email],
+    [2,"Dora the Party Explorer", "Planner",       Faker::Lorem.sentence(3) ,  53.350660, -6.321972,  Faker::Avatar.image,  Faker::Commerce.price,"Monday to friday 9 to 18 hs"  , Faker::Internet.email  ],
+    [1, "Phils Engineering Co.","Engineer",        Faker::Lorem.sentence(3) , 53.348867, -6.248095,   Faker::Avatar.image,  Faker::Commerce.price, "Monday to friday 9 to 18 hs" , Faker::Internet.email  ],
+    [2, "Yevhens Big Engineering Co.","Engineer",  Faker::Lorem.sentence(3) , 53.348867, -6.368095,   Faker::Avatar.image,  Faker::Commerce.price,"Monday to friday 9 to 18 hs"  , Faker::Internet.email  ],
+    [3, "Ramas Engineers", "Engineer",             Faker::Lorem.sentence(3) , 53.348867, -6.358095,   Faker::Avatar.image,  Faker::Commerce.price,"Monday to friday 9 to 18 hs"  , Faker::Internet.email  ],
+    [1, "Panno Engineering Limited", "Engineer",   Faker::Lorem.sentence(3), 53.438867, -6.248095,    Faker::Avatar.image,  Faker::Commerce.price,"Monday to friday 9 to 18 hs"  , Faker::Internet.email  ],
+    [2, "Industrial Painters",  "Painter",         Faker::Lorem.sentence(3), 53.342786, -6.249049,    Faker::Avatar.image,  Faker::Commerce.price, "Monday to friday 9 to 18 hs" , Faker::Internet.email  ],
+    [3, "Private Painting Co.",  "Painter",        Faker::Lorem.sentence(3), 53.335786, -6.249049,    Faker::Avatar.image,  Faker::Commerce.price,"Monday to friday 9 to 18 hs"  , Faker::Internet.email  ],
+    [1, "Alans Painting Extravaganza",  "Painter", Faker::Lorem.sentence(3) , 53.329786, -6.249049,  Faker::Avatar.image,  Faker::Commerce.price, "Monday to friday 9 to 18 hs"  , Faker::Internet.email  ],
+    [2, "We Paint Everything",  "Painter",         Faker::Lorem.sentence(3) , 53.349786, -6.249049,   Faker::Avatar.image,  Faker::Commerce.price ,"Monday to friday 9 to 18 hs" , Faker::Internet.email  ],
+    [1, "Large Scale Builders", "Builder",         Faker::Lorem.sentence(3) , 53.348287, -6.252654, Faker::Avatar.image,  Faker::Commerce.price,"Monday to friday 9 to 18 hs"    , Faker::Internet.email  ],
+    [2, "Small Building Co.", "Builder",           Faker::Lorem.sentence(3) , 53.438287, -6.525654, Faker::Avatar.image,  Faker::Commerce.price, "Monday to friday 9 to 18 hs"   , Faker::Internet.email  ],
+    [3, "Pannos Building Group", "Builder",        Faker::Lorem.sentence(3) , 54.843287, -6.363654, Faker::Avatar.image,  Faker::Commerce.price,"Monday to friday 9 to 18 hs"    , Faker::Internet.email  ],
+    [1, "Handy Manny", "Builder",                  Faker::Lorem.sentence(3) , 53.358287, -6.525654, Faker::Avatar.image,  Faker::Commerce.price, "Monday to friday 9 to 18 hs"   , Faker::Internet.email  ]
 ]
 
-services_list.each do | name, service_type, description, latitude, longitude|
-  Service.find_or_create_by(name: name, service_type: service_type, description: description, latitude: latitude, longitude: longitude)
+services_list.each do |c_id, name, service_type, description, latitude, longitude, image, price, availability, email|
+  Service.find_or_create_by(user_id: c_id, name: name, service_type: service_type, description: description, latitude: latitude, longitude: longitude ,
+                            img_url: image, price: price, availability: availability, email: email)
 end
 
 customer_list = [
-    [ "Alan", "Capo", "26 essex street", 53453454, "12-12-1986"   ],
-    [ "Pepe", "asd", "the liffey trust centre, Dublin 1",23454235, "11-12-1986" ]
+    [ "alan@admin.com","123456", "123456", "Capo", "26 essex street", 53453454, "12-12-1986", true  ],
+    [ "Pepe@pepe.com", "123456","123456"," Mascapito", "the liffey trust centre, Dublin 1",23454235, "11-12-1986" ],
+    [ "Pepe1@pepe.com", "123456","123456",Faker::Name.name, Faker::Address.street_address,Faker::PhoneNumber, Faker::Date.between_except(1.year.ago, 1.year.from_now, Date.today) ]
 ]
 
-customer_list.each do |name, lastname, address, phone, birthday|
-  Customer.find_or_create_by( name: name, lastname: lastname, address: address, phone: phone, birthday: birthday)
+customer_list.each do | email, password, password_confirmation ,name, address, phone, birthday, admin|
+  User.create!(email: email,password: password,password_confirmation: password_confirmation , name: name, address: address, phone: phone, birthday: birthday,
+  admin: admin)
+end
+
+reviews_list = [
+    [1, 2, Faker::Lorem.sentence(3),Faker::Lorem.sentence(6), Faker::Avatar.image("my-own-slug", "50x50") ],
+    [2, 1, Faker::Lorem.sentence(3),Faker::Lorem.sentence(6), Faker::Avatar.image("my-own-slug", "50x50") ],
+    [3, 3, Faker::Lorem.sentence(3),Faker::Lorem.sentence(6), Faker::Avatar.image("my-own-slug", "50x50") ],
+    [9, 3, Faker::Lorem.sentence(3),Faker::Lorem.sentence(6), Faker::Avatar.image("my-own-slug", "50x50") ],
+    [9, 1, Faker::Lorem.sentence(3),Faker::Lorem.sentence(6), Faker::Avatar.image("my-own-slug", "50x50") ],
+    [9, 2, Faker::Lorem.sentence(3),Faker::Lorem.sentence(6), Faker::Avatar.image("my-own-slug", "50x50") ],
+    [9, 1, Faker::Lorem.sentence(3),Faker::Lorem.sentence(6), Faker::Avatar.image("my-own-slug", "50x50") ]
+]
+
+reviews_list.each do |service, user, title, description, img_url|
+  Review.find_or_create_by(user_id: user, service_id: service, title: title, description: description, image_url: img_url)
 end

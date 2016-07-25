@@ -1,14 +1,24 @@
 Rails.application.routes.draw do 
 
+
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
 
+  get 'profile/new' => 'profile#index'
 
+  get 'profile/:id' => 'profile#show'
 
-  get  'services_location' =>'services_location#index'
+  post 'profile/:id' => 'profile#show'
+
+  get 'services_location' =>'services_location#index'
+
+  get 'services_list' => 'service_profile#index'
+
 
   root 'home#index'
 
   resources :services
-  resources :customers
+
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

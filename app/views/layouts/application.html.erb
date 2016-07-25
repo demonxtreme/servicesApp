@@ -12,9 +12,12 @@
       <img alt="Brand" src="">
     </a>
     <ul class="nav navbar-nav">
-      <li><%= link_to "Customers", customers_path %></li>
       <li><%= link_to "Find Services", services_location_path %></li>
+      <li><%= link_to "My services List", services_list_path %></li>
+      <li><%= link_to "Services", services_path %></li>
+      <% if !user_signed_in? %>
       <li><%= link_to "Sign in with Facebook", omniauth_authorize_path(:user, :facebook) %></li>
+      <% end %>
       </ul>
     <% if user_signed_in? %>
         <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link"><%= current_user.email %></a>
@@ -28,12 +31,13 @@
     <% end %>
   </div>
 </nav>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 <div class="container">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
 
   <%= yield %>
+
+
 </div>
 </body>
 </html>

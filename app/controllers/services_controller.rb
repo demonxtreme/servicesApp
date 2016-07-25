@@ -1,5 +1,8 @@
 class ServicesController < ApplicationController
   before_action :set_service, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
+  #before_filter :ensure_admin, :only => [:edit, :destroy]
+
 
   # GET /services
   # GET /services.json
@@ -64,7 +67,7 @@ class ServicesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_service
-      @service = Service.find(params[:id])
+      @service = Service.find_by(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,37 +1,38 @@
 <h1>Find services</h1>
 <div class="row">
-  <%= form_tag(services_location_path, method: "get") do %>
-
-      <div class="input-group">
-        <%= label_tag(:locationTextField, "Location", class: 'col-xs-1 col-md-1') %>
-        <%= text_field_tag :locationTextField, "", class: 'form-control col-md-2', placeholder: 'hehe' %>
-      </div>
-      <div class="input-group col-md-2">
-        <%= text_field_tag :searchInput, "", class: 'form-control', placeholder: 'Search for...' %>
-        <span class="input-group-btn">
-        <%= submit_tag("Search", class: 'form-control') %>
-      </span>
-      </div>
-
-      </div>
-  <% end %>
-  </div>
-  <div class="row">
-    <div class="pull-left">
-      <span><%= @location %></span>
-      <span><%= @searchInput %></span>
-      <% @services.each do |service| %>
-          <% if (service.service_type == params[:searchInput]) %>
-              <table>
-                <tr>
-                  <td><%= service.name %></td>
-                </tr>
-              </table>
-          <% end %>
-      <% end %>
+<%= form_tag(services_location_path, method: "get", class: "form-inline") do %>
+    <div class="form-group">
+      <%= label_tag(:locationTextField, "Location") %>
+      <%= text_field_tag :locationTextField, "", class: 'form-control', placeholder: 'hehe' %>
     </div>
-    <div id="map" class="pull-right"></div>
+    <div class="form-group ">
+      <%= text_field_tag :searchInput, "", class: 'form-control', placeholder: 'Search for...' %>
+      <%= submit_tag("Search", class: 'form-control') %>
+    </div>
+<% end %>
+</div>
+<div class="col-md-6">
+      <table>
+        <% if !params[:searchInput].nil?  %>
+        <% @services.each do |service| %>
+            <% if (service.service_type == params[:searchInput]) %>
+                <tr>
+                  <td>
+                      <%= image_tag(service.img_url, size: "100x100") %>
+                      <h4><%= service.name %></h4>
+
+                      <h5>Service type: </h5><%= service.service_type %>
+                      <%= service.description %>
+                      <%= service.price %>
+
+                  </td>
+                </tr>
+            <% end %>
+        <% end %>
+        <% end %>
+      </table>
   </div>
+    <div id="map" class="col-md-5"></div>
   <script>
 
 

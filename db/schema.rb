@@ -10,61 +10,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160717114502) do
-
-  create_table "customers", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.string   "lastname",    null: false
-    t.string   "address"
-    t.string   "country"
-    t.string   "city"
-    t.string   "postal_code"
-    t.integer  "phone"
-    t.date     "birthday"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
+ActiveRecord::Schema.define(version: 20160721233948) do
 
   create_table "reviews", force: :cascade do |t|
     t.integer  "service_id"
-    t.integer  "customer_id"
+    t.integer  "user_id"
     t.string   "title",       null: false
     t.string   "description", null: false
-    t.string   "image_url",   null: false
+    t.string   "image_url"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["customer_id"], name: "index_reviews_on_customer_id"
     t.index ["service_id"], name: "index_reviews_on_service_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "services", force: :cascade do |t|
-    t.integer  "customer_id"
+    t.integer  "user_id"
     t.string   "name"
     t.string   "service_type"
     t.string   "description"
     t.decimal  "latitude"
     t.decimal  "longitude"
     t.string   "img_url"
+    t.decimal  "price"
+    t.string   "availability"
+    t.string   "phone_number"
+    t.string   "email"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["customer_id"], name: "index_services_on_customer_id"
+    t.index ["user_id"], name: "index_services_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "name",                   default: "",    null: false
+    t.string   "address"
+    t.string   "country"
+    t.string   "city"
+    t.string   "postal_code"
+    t.integer  "phone"
+    t.date     "birthday"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "provider"
     t.string   "uid"
+    t.boolean  "admin",                  default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
