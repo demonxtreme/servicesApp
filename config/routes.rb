@@ -5,9 +5,10 @@ Rails.application.routes.draw do
 
   get 'profile/new' => 'profile#index'
 
+
   get 'profile/:id' => 'profile#show'
 
-  post 'profile/:id' => 'profile#show'
+  post 'profile/:id' => 'profile#create'
 
   get 'services_location' =>'services_location#index'
 
