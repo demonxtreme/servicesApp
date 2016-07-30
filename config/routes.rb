@@ -3,12 +3,13 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
 
-  get 'profile/new' => 'profile#index'
+  #get 'profile/new' => 'profile#index'
 
+  resources :profile
 
-  get 'profile/:id' => 'profile#show'
+  #get 'profile/:id' => 'profile#show'
 
-  post 'profile/:id' => 'profile#create'
+  #post 'profile/:id' => 'profile#create'
 
   get 'services_location' =>'services_location#index'
 

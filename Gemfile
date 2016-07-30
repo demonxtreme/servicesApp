@@ -20,6 +20,10 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'formtastic', '~> 3.0'
 
+gem 'jquery-turbolinks'
+
+gem 'geocoder'
+
 gem 'binding_of_caller'
 
 source 'https://rails-assets.org' do

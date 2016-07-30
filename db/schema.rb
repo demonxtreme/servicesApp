@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20160721233948) do
     t.string   "country"
     t.string   "city"
     t.string   "postal_code"
-    t.integer  "phone"
+    t.string   "phone"
     t.date     "birthday"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

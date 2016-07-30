@@ -1,6 +1,6 @@
 <h1>Home Page</h1>
 
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places" %>
 
 <%= form_tag(services_location_path, method: "get", class: "form-inline") do %>
     <div class="form-group">

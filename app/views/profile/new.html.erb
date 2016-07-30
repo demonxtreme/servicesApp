@@ -1,0 +1,73 @@
+<h1>New profile</h1>
+
+<%= form_for(@service) do |f| %>
+    <% if @service.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(service.errors.count, "error") %> prohibited this service from being saved:</h2>
+
+          <ul>
+            <% service.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :service_type %>
+      <%= f.select (:service_type) do %>
+          <% [['Plumber'], ['Electrician'], ['Electrician'], ['Teacher'],['Teacher'],['Delivery'], ['Planner'], ['Engineer'], ['Painter'], ['Builder']].each do |c| -%>
+              <%= content_tag(:option, c.first, value: c.last) %>
+          <% end %>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+    </div>
+
+    <div class="field">
+      <%= f.label :latitude %>
+      <%= f.text_field :latitude %>
+    </div>
+
+    <div class="field">
+      <%= f.label :longitude %>
+      <%= f.text_field :longitude %>
+    </div>
+
+    <div class="field">
+      <%= f.label :img_url %>
+      <%= f.text_field :img_url %>
+    </div>
+
+    <div class="field">
+      <%= f.label :price %>
+      <%= f.text_field :price %>
+    </div>
+
+    <div class="field">
+      <%= f.label :availability %>
+      <%= f.text_field :availability %>
+    </div>
+
+    <div class="field">
+      <%= f.label :phone_number %>
+      <%= f.text_field :phone_number %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

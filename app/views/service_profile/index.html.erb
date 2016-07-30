@@ -1,7 +1,5 @@
 <h1>Services List</h1>
 
-<%=@userServices.ids %>
-
 <table>
   <thead>
   <tr>
@@ -27,7 +25,7 @@
         <td><%= service.latitude %></td>
         <td><%= service.longitude %></td>
         <td><%= link_to 'Show', service %></td>
-        <td><%= link_to "Profile", controller: "profile", action: "show", id: service.id %></td>
+        <td><%= link_to 'Profile', controller: 'profile', action: 'show', id: service.id %></td>
         <td><%= link_to 'Edit', edit_service_path(service) %></td>
         <td><%= link_to 'Destroy', service, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -35,4 +33,4 @@
   </tbody>
 </table>
 
-<%= link_to "Create a service" ,controller: "profile" %>
+<%= link_to 'Create a service' ,controller: 'profile', action: 'new' %>

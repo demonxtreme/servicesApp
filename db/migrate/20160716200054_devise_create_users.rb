@@ -9,7 +9,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :country
       t.string :city
       t.string :postal_code
-      t.integer :phone
+      t.string :phone
       t.date :birthday
 
       ## Recoverable

@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :services
   has_many :reviews
 
+  validates :name, presence: true
 
 
   devise :database_authenticatable, :registerable,
