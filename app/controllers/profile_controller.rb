@@ -8,17 +8,19 @@ class ProfileController < ApplicationController
 
   def new
     @service = Service.new
+    puts "pasando pasando"
   end
 
 
 
   def create
-
     @service = Service.new(service_params)
+    @service.user_id = current_user.id
 
+    puts "pasando pasando y por aca??"
     respond_to do |format|
       if @service.save
-        format.html { redirect_to @service, notice: 'Service was successfully created.' }
+        format.html { redirect_to @service, notice: 'Service was wuyfgwyu successfully created.' }
         format.json { render :show, status: :created, location: @service }
       else
         format.html { render :new }

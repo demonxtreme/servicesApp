@@ -29,6 +29,8 @@ class ServicesController < ApplicationController
   def create
     @service = Service.new(service_params)
 
+    puts "pasa por aca???"
+
     respond_to do |format|
       if @service.save
         format.html { redirect_to @service, notice: 'Service was successfully created.' }
